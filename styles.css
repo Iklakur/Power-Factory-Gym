@@ -1,6 +1,6 @@
 /* ===================================
    CYBER-FITNESS GYM WEBSITE STYLES
-   FIXED VERSION - All sections visible by default
+   SCROLL-BASED CARD ANIMATIONS VERSION
    =================================== */
 
 /* CSS Variables - Easy customization for gym owners */
@@ -148,7 +148,6 @@ body {
     align-items: center;
     justify-content: center;
     position: relative;
-    /* REMOVED: overflow: hidden - this was hiding content */
 }
 
 .hero-bg {
@@ -199,7 +198,6 @@ body {
 
 .title-line {
     display: block;
-    /* CHANGED: Start visible, animate as enhancement */
     opacity: 1;
     transform: translateY(0);
     animation: slideUp 1s ease forwards;
@@ -232,7 +230,6 @@ body {
     font-size: clamp(16px, 2vw, 20px);
     color: var(--text-secondary);
     margin-bottom: 40px;
-    /* CHANGED: Start visible */
     opacity: 1;
     animation: fadeIn 1s ease forwards 0.8s;
 }
@@ -242,7 +239,7 @@ body {
     to { opacity: 1; }
 }
 
-/* CTA Button with Glow Pulse */
+/* CTA Button with Glow Pulse - HOVER ONLY */
 .cta-btn {
     display: inline-flex;
     align-items: center;
@@ -259,7 +256,6 @@ body {
     position: relative;
     overflow: hidden;
     transition: all 0.3s ease;
-    /* CHANGED: Start visible */
     opacity: 1;
     animation: fadeIn 1s ease forwards 1s;
 }
@@ -286,6 +282,7 @@ body {
     z-index: 1;
 }
 
+/* HOVER-ONLY effect for CTA buttons */
 .cta-btn:hover {
     transform: translateY(-3px);
     box-shadow: 0 10px 30px rgba(0, 240, 255, 0.4);
@@ -329,9 +326,7 @@ body {
 section {
     padding: var(--section-padding) 0;
     position: relative;
-    /* ADDED: Ensure minimum visible height */
     min-height: 400px;
-    /* REMOVED: overflow: hidden unless needed */
 }
 
 .section-title {
@@ -354,19 +349,14 @@ section {
     margin-bottom: 60px;
 }
 
-/* CRITICAL FIX: Scroll Reveal Animation */
-/* Content is VISIBLE by default, animation is enhancement only */
+/* SCROLL REVEAL ANIMATION - Content visible, animation on scroll */
 .reveal {
-    /* CHANGED: Fully visible by default */
     opacity: 1;
     transform: translateY(0);
-    /* Animation will enhance on scroll, but won't hide content */
     transition: all 0.8s ease;
 }
 
-/* When animation triggers, add subtle enhancement */
 .reveal:not(.active) {
-    /* Only slightly hidden for animation effect */
     opacity: 0.85;
     transform: translateY(20px);
 }
@@ -374,6 +364,56 @@ section {
 .reveal.active {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* ===================================
+   SCROLL-BASED CARD ANIMATIONS
+   Cards animate automatically on scroll
+   =================================== */
+
+/* Base scroll-reveal class for cards */
+.scroll-reveal {
+    /* VISIBLE by default - no opacity lock */
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Before animation triggers - subtle pre-animation state */
+.scroll-reveal:not(.animated) {
+    opacity: 0.9;
+    transform: translateY(30px) scale(0.95);
+}
+
+/* Animated state - full visibility and position */
+.scroll-reveal.animated {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* Staggered animation delays for grid items */
+.scroll-reveal:nth-child(1) {
+    transition-delay: 0s;
+}
+
+.scroll-reveal:nth-child(2) {
+    transition-delay: 0.1s;
+}
+
+.scroll-reveal:nth-child(3) {
+    transition-delay: 0.2s;
+}
+
+.scroll-reveal:nth-child(4) {
+    transition-delay: 0.3s;
+}
+
+.scroll-reveal:nth-child(5) {
+    transition-delay: 0.4s;
+}
+
+.scroll-reveal:nth-child(6) {
+    transition-delay: 0.5s;
 }
 
 /* Features Section */
@@ -388,6 +428,7 @@ section {
     margin-top: 60px;
 }
 
+/* Feature cards with scroll animation */
 .feature-card {
     background: var(--glass-bg);
     backdrop-filter: blur(10px);
@@ -397,7 +438,6 @@ section {
     text-align: center;
     transition: all 0.4s ease;
     position: relative;
-    /* REMOVED: overflow: hidden to prevent content clipping */
 }
 
 .feature-card::before {
@@ -413,6 +453,7 @@ section {
     pointer-events: none;
 }
 
+/* HOVER effects remain interactive */
 .feature-card:hover {
     transform: translateY(-10px);
     border-color: var(--neon-primary);
@@ -474,6 +515,7 @@ section {
     margin-top: 60px;
 }
 
+/* Program cards with scroll animation */
 .program-card {
     background: var(--glass-bg);
     backdrop-filter: blur(10px);
@@ -483,6 +525,7 @@ section {
     transition: all 0.4s ease;
 }
 
+/* HOVER effects remain interactive */
 .program-card:hover {
     transform: translateY(-10px);
     border-color: var(--neon-primary);
@@ -570,6 +613,7 @@ section {
     margin: 60px 0;
 }
 
+/* Stat cards with scroll animation */
 .stat-card {
     text-align: center;
     padding: 30px;
@@ -580,6 +624,7 @@ section {
     transition: all 0.4s ease;
 }
 
+/* HOVER effects remain interactive */
 .stat-card:hover {
     transform: translateY(-5px);
     border-color: var(--neon-primary);
@@ -610,6 +655,7 @@ section {
     margin-top: 40px;
 }
 
+/* Transformation cards with scroll animation */
 .transformation-card {
     background: var(--glass-bg);
     backdrop-filter: blur(10px);
@@ -619,6 +665,7 @@ section {
     transition: all 0.4s ease;
 }
 
+/* HOVER effects remain interactive */
 .transformation-card:hover {
     transform: translateY(-10px);
     border-color: var(--neon-primary);
@@ -697,7 +744,6 @@ section {
     height: 100%;
     background: linear-gradient(90deg, var(--neon-primary), var(--neon-secondary));
     border-radius: 10px;
-    /* CHANGED: Start with some width visible */
     width: 0;
     transition: width 1.5s ease;
     box-shadow: 0 0 15px var(--neon-primary);
@@ -715,6 +761,7 @@ section {
     margin-top: 60px;
 }
 
+/* Pricing cards with scroll animation */
 .pricing-card {
     background: var(--glass-bg);
     backdrop-filter: blur(10px);
@@ -739,6 +786,7 @@ section {
     pointer-events: none;
 }
 
+/* HOVER effects remain interactive */
 .pricing-card:hover {
     transform: translateY(-10px);
     border-color: var(--neon-primary);
@@ -880,6 +928,7 @@ section {
     z-index: -1;
 }
 
+/* HOVER effect for plan button */
 .plan-btn:hover {
     color: var(--bg-primary);
     border-color: transparent;
